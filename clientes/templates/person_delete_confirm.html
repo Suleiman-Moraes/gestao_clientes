@@ -8,7 +8,10 @@
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-        <button type="submit" class="btn btn-danger">Deletar</button>
+        <p>
+            <button type="submit" class="btn btn-danger">Sim</button>
+            <a class="btn btn-warning" href="{% url 'persons_list' %}">Não <span class="sr-only">(current)</span></a>
+        </p>
     </form>
 
 {% endblock %}

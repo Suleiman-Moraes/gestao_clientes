@@ -10,23 +10,34 @@
         </div>
         <div class="col-6">
             <h3>Listagem de Clientes</h3>
-            <ul class="list-group">
-                {% for person in persons %}
-                    <li class="list-group-item">
-                        <a href="{% url 'persons_update' person.id %}">{{ person.first_name }}</a>
-                        <a href="{% url 'persons_delete' person.id %}" class="trash-item">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-            <br>
-            <a href="{% url 'persons_new' %} " class="btn btn-warning">Novo Cliente</a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="50%" scope="col">Nome</th>
+                            <th width="15%" scope="col">Idade</th>
+                            <th width="15%" scope="col">Salario</th>
+                            <th width="10%" scope="col">Deletar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        {% for person in persons %}
+                            <tr>
+                                <td><a href="{% url 'persons_update' person.id %}" title="Editar {{ person.first_name }}?">{{ person.first_name }}</a></td>
+                                <td><a href="{% url 'persons_update' person.id %}" title="Editar {{ person.first_name }}?">{{ person.age }}</a></td>
+                                <td><a href="{% url 'persons_update' person.id %}" title="Editar {{ person.first_name }}?">{{ person.salary }}</a></td>
+                                <td>
+                                    <a href="{% url 'persons_delete' person.id %}" class="trash-item" title="Delatar {{ person.first_name }}?">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
         </div>
         <div class="col">
-            {% if user.is_authenticated %}
-                <p>Olá {{ user.username }} <a href="{% url 'logout' %}" class="badge badge-dark">Sair</a> </p>
-            {% endif %}
         </div>
     </div>
 
