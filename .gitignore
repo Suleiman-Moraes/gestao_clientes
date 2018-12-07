@@ -6,4 +6,3 @@
 *.vEnv
 *pyc
 media
-*.env
