@@ -6,7 +6,12 @@ from .forms import PersonForm
 
 @login_required
 def persons_list(request):
-    persons = Person.objects.all()
+    termo_busca = request.GET.get('pesquisa', None)
+    if termo_busca:
+        persons = Person.objects.filter(first_name__contains=termo_busca)
+    else:
+        persons = Person.objects.all()
+
     return render(request, 'person.html', {'persons': persons})
 
 
